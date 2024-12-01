@@ -31,10 +31,11 @@ ENV AWS_LAMBDA_URL=${AWS_LAMBDA_URL}
 
 COPY --from=build /usr/src/app/package.json ./
 COPY --from=build /usr/src/app/dist /usr/src/app/dist
+COPY --from=build /usr/src/app/dist app/dist
 RUN npm install --omit=dev
 
 RUN echo "starting the app"
 
 EXPOSE 3002
 
-CMD ["node", "dist/app.js"]
+CMD ["node", "dist/src/app.js"]
